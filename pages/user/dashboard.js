@@ -20,9 +20,9 @@ export default function Home() {
       <Typography 
         variant='h2' 
         component='h1' 
-        display='block' 
         align='center' 
         fontWeight='300' 
+        color={theme.palette.primary.main}
         > 
         Meus Anúncios
       </Typography>
