@@ -14,14 +14,14 @@ const theme = createTheme({
       main:'#000000',
     },
     secondary: {
-      main: '#00ff00',
+      main: '#ffffff',
     },
     error: {
       main: '#0000ff',
     },
     background : {
       default: 'rgb(242, 244, 245)',
-      white: 'rgb(255,255,255)'
+      contrast: 'rgb(255,255,255)'
     }, 
   },
   typography: {
