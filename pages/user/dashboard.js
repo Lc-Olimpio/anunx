@@ -76,10 +76,10 @@ export default function Home() {
             </CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Produto 1
+                Produto 2
               </Typography>
               <Typography variant="body2" color="text.primary">
-                R$ 120,00
+                R$ 100,00
               </Typography>
             </CardContent>
             <CardActions>
@@ -105,10 +105,10 @@ export default function Home() {
             </CardActionArea>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Produto 1
+                Produto 3
               </Typography>
               <Typography variant="body2" color="text.primary">
-                R$ 120,00
+                R$ 50,00
               </Typography>
             </CardContent>
             <CardActions>

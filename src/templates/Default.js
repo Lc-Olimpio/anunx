@@ -1,4 +1,3 @@
-import { Container } from '@mui/material'
 import Header from '../components/Header'
 
 const Default = ({children}) => {
