@@ -2,8 +2,12 @@ import {
   Box,
   Button,
   Container,
+  FormControl,
   IconButton,
+  InputAdornment,
+  InputLabel,
   MenuItem,
+  OutlinedInput,
   TextField,
   Typography 
 } from '@mui/material'
@@ -99,7 +103,7 @@ const Publish = () => {
         component='h1'
         textAlign='center'
         fontWeight='300'
-        color={theme.palette.primary.main}
+        color='textPrimary'
         >
         Publicar Anúncio
         </Typography>
@@ -107,7 +111,7 @@ const Publish = () => {
         variant='subtitle1'
         textAlign='center'
         fontSize='1.5em'
-        color={theme.palette.primary.main}
+        color='textPrimary'
         >
           Quanto mais detalhado, melhor!
         </Typography>
@@ -118,7 +122,7 @@ const Publish = () => {
           <Typography 
             variant='h6' 
             component='h6'
-            color={theme.palette.primary.main}
+            color='textPrimary'
             >
             Título do anúncio
           </Typography>
@@ -132,7 +136,7 @@ const Publish = () => {
           <Typography 
             variant='h6' 
             component='h6'
-            color={theme.palette.primary.main}
+            color='textPrimary'
             marginTop={1}
           >
             Categoria
@@ -172,14 +176,14 @@ const Publish = () => {
           <Typography 
             variant='h6' 
             component='h6'
-            color={theme.palette.primary.main}
+            color='textPrimary'
             >
               Imagem
           </Typography>
           <Typography 
             component='div'
             variant='body2' 
-            color={theme.palette.primary.main}
+            color='textPrimary'
             >
               A primeira imagem é a foto principal do anúncio
           </Typography>
@@ -196,7 +200,7 @@ const Publish = () => {
               <Typography
               component='span'
               variant='body2'
-              color={theme.palette.primary.main}
+              color='textPrimary'
               textAlign='center'
               >
                 Clique para adicionar ou arraste a imagem para aqui.
@@ -233,14 +237,14 @@ const Publish = () => {
           <Typography 
               variant='h6' 
               component='h6'
-              color={theme.palette.primary.main}
+              color='textPrimary'
             >
               Descrição
             </Typography>
             <Typography 
               component='div'
               variant='body2' 
-              color={theme.palette.primary.main}
+              color='textPrimary'
             >
               Escreva os detalhes do que esta vendendo
             </Typography>
@@ -255,10 +259,31 @@ const Publish = () => {
 
       <Container maxWidth = 'md' sx={ContainerStyle}>
         <Box sx={boxStyle}>
+          <Typography
+          variant='h6' 
+          component='h6'
+          color='textPrimary'
+          marginBottom='0.3em'
+          >
+            Preço
+          </Typography>
+          <FormControl fullWidth variant='outlined'>
+            <InputLabel>Valor</InputLabel>
+            <OutlinedInput 
+            onChange={() => {}}
+            startAdornment= {<InputAdornment position='start'>$</InputAdornment>}
+            label = 'Valor'
+            />
+          </FormControl>
+        </Box>
+      </Container>
+
+      <Container maxWidth = 'md' sx={ContainerStyle}>
+        <Box sx={boxStyle}>
           <Typography 
               variant='h6' 
               component='h6'
-              color={theme.palette.primary.main}
+              color='textPrimary'
             >
               Dados de contato
           </Typography>
