@@ -1,31 +1,71 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+import Link from 'next/link';
+
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  Container,
+  Avatar,
+  Menu,
+  MenuItem,
+  Divider,
+} from '@mui/material';
+
+import { AccountCircle } from '@mui/icons-material';
 
 export default function ButtonAppBar() {
+  const [anchorUserMenu, setAnchorUserMenu] = useState()
+  const openUserMenu = Boolean(anchorUserMenu)
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
+    <Box>
+      <AppBar position="static" elevation={3}>
+        <Container maxWidth="lg">
+          <Toolbar sx={{padding:'0'}}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Anunx
+            </Typography>
+            <Link href={"/user/publish"} passHref style={{color:'white', textDecoration:'none'}}>
+              <Button color="inherit" variant='outlined'>
+                Anunciar e Vender
+              </Button>
+            </Link>
+            <IconButton color='secondary' onClick={(e) => setAnchorUserMenu(e.currentTarget)}>
+              {
+                true === false
+                ? <Avatar src="" /> 
+                : <AccountCircle />
+              }
+
+              <Typography 
+              variant='subtitle2'
+              color='secondary'
+              marginLeft='0.2em'
+              >
+                Nome do Usuário
+              </Typography>
+            </IconButton>
+            <Menu
+            open={openUserMenu}
+            anchorEl={anchorUserMenu}
+            onClose={() => setAnchorUserMenu(null)}
+            >
+              <Link href='/user/dashboard' passHref style={{color:'black', textDecoration:'none'}}>
+                <MenuItem>Ver anúncios</MenuItem>
+              </Link>
+              <Link href='/user/publish' passHref style={{color:'black', textDecoration:'none'}}>
+                <MenuItem>Publicar novo anúncio</MenuItem>
+              </Link>
+              <Divider />
+              <MenuItem>sair</MenuItem>
+            </Menu>
+          </Toolbar>
+        </Container>
       </AppBar>
     </Box>
   );

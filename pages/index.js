@@ -45,7 +45,7 @@ const Home = () => {
         </Paper>
       </Container>
 
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Typography
         component="h2"
         variant="h4"
@@ -56,7 +56,7 @@ const Home = () => {
         </Typography>
         <Grid container spacing={3} columns={{xs:4 ,sm:12 ,md:12}}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 300 , margin:'0 auto'}} >
+            <Card sx={{ maxWidth: 345}} >
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -77,7 +77,7 @@ const Home = () => {
             </Card>        
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 300 , margin:'0 auto'}} >
+            <Card sx={{ maxWidth: 345}} >
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -98,7 +98,7 @@ const Home = () => {
             </Card>        
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 300 , margin:'0 auto'}} >
+            <Card sx={{ maxWidth: 345 }} >
               <CardActionArea>
                 <CardMedia
                   component="img"
