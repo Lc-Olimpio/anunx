@@ -16,7 +16,7 @@ import TemplateDefault from '../../src/templates/Default'
 export default function Home() {
   return (
    <TemplateDefault>
-    <Container maxWidth='sm' sx={{padding:theme.spacing(8,0,6)}}>
+    <Container maxWidth='sm'>
       <Typography 
         variant='h2' 
         component='h1' 

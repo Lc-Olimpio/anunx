@@ -1,12 +1,16 @@
+import { Box } from '@mui/material'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
+import theme from '../theme'
 
 const Default = ({children}) => {
   return (
     <>
     <Header />
-      {children}
-          
-    <footer> Footer </footer>
+      <Box sx={{padding:theme.spacing(6,0,6)}}>
+        {children}
+      </Box>
+    <Footer />
     </>
   )
 }

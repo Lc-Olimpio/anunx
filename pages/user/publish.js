@@ -97,7 +97,7 @@ const Publish = () => {
   return(
     <TemplateDefault>
       
-      <Container maxWidth='sm' sx={{padding:theme.spacing(8,0,6)}}> 
+      <Container maxWidth='sm'> 
         <Typography 
         variant='h2' 
         component='h1'

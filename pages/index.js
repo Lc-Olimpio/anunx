@@ -24,7 +24,7 @@ const Home = () => {
   return(
     <TemplateDefault>
 
-      <Container maxWidth='md' sx={{padding:theme.spacing(8, 10, 6) }}>
+      <Container maxWidth='md'>
         <Typography
         component="h1"
         variant="h3"
@@ -50,17 +50,17 @@ const Home = () => {
         component="h2"
         variant="h4"
         textAlign="center"
-        marginBottom='0.5em'
+        margin= {theme.spacing(3,0,3)}
         >
           Destaques
         </Typography>
         <Grid container spacing={3} columns={{xs:4 ,sm:12 ,md:12}}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 345}} >
+            <Card >
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="125"
+                  height="250"
                   image='https://picsum.photos/200'
                   alt="alt"
                   title='Título'
@@ -77,11 +77,11 @@ const Home = () => {
             </Card>        
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 345}} >
+            <Card >
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="125"
+                  height="250"
                   image='https://picsum.photos/200'
                   alt="alt"
                   title='Título'
@@ -98,11 +98,11 @@ const Home = () => {
             </Card>        
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{ maxWidth: 345 }} >
+            <Card >
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="125"
+                  height="250"
                   image='https://picsum.photos/200'
                   alt="alt"
                   title='Título'

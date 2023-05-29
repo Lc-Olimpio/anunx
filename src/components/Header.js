@@ -28,7 +28,7 @@ export default function ButtonAppBar() {
         <Container maxWidth="lg">
           <Toolbar sx={{padding:'0'}}>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Anunx
+              <Link href={"/"}  style={{color:'white', textDecoration:'none'}}>Anunx</Link>
             </Typography>
             <Link href={"/user/publish"} passHref style={{color:'white', textDecoration:'none'}}>
               <Button color="inherit" variant='outlined'>
