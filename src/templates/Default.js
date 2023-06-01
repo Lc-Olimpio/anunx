@@ -7,7 +7,7 @@ const Default = ({children}) => {
   return (
     <>
     <Header />
-      <Box sx={{padding:theme.spacing(6,0,6)}}>
+      <Box sx={{padding:theme.spacing(2,0,2)}}>
         {children}
       </Box>
     <Footer />

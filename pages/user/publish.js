@@ -112,6 +112,7 @@ const Publish = () => {
         textAlign='center'
         fontSize='1.5em'
         color='textPrimary'
+        marginBottom={theme.spacing(3)}
         >
           Quanto mais detalhado, melhor!
         </Typography>
@@ -138,7 +139,7 @@ const Publish = () => {
             component='h6'
             color='textPrimary'
             marginTop={1}
-          >
+            >
             Categoria
           </Typography>
           
@@ -178,14 +179,14 @@ const Publish = () => {
             component='h6'
             color='textPrimary'
             >
-              Imagem
+            Imagem
           </Typography>
           <Typography 
             component='div'
             variant='body2' 
             color='textPrimary'
             >
-              A primeira imagem é a foto principal do anúncio
+            A primeira imagem é a foto principal do anúncio
           </Typography>
 
           <Box sx={{

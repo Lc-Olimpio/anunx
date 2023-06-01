@@ -5,19 +5,13 @@ IconButton,
 InputBase,
 Typography, 
 Grid,
-Card,
-CardMedia,
-CardActions,
-CardActionArea,
-CardContent,
-Button,
-
 } from "@mui/material"
 
 import SearchIcon from '@mui/icons-material/Search';
 
 import theme from "../src/theme";
 import TemplateDefault from "../src/templates/Default"
+import Card from "../src/components/Card";
 
 const Home = () => {
   
@@ -56,67 +50,25 @@ const Home = () => {
         </Typography>
         <Grid container spacing={3} columns={{xs:4 ,sm:12 ,md:12}}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image='https://picsum.photos/200'
-                  alt="alt"
-                  title='Título'
-                />
-              </CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Produto 1
-                </Typography>
-                <Typography variant="body2" color="text.primary">
-                  R$ 120,00
-                </Typography>
-              </CardContent>               
-            </Card>        
+          <Card 
+            image='https://picsum.photos/200'
+            title='produto x'
+            subtitle='price'
+          />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image='https://picsum.photos/200'
-                  alt="alt"
-                  title='Título'
-                />
-              </CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Produto 2
-                </Typography>
-                <Typography variant="body2" color="text.primary">
-                  R$ 100,00
-                </Typography>
-              </CardContent>               
-            </Card>        
+          <Card 
+            image='https://picsum.photos/200'
+            title='produto x'
+            subtitle='price'
+          />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="250"
-                  image='https://picsum.photos/200'
-                  alt="alt"
-                  title='Título'
-                />
-              </CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Produto 3
-                </Typography>
-                <Typography variant="body2" color="text.primary">
-                  R$ 50,00
-                </Typography>
-              </CardContent>               
-            </Card>        
+          <Card 
+            image='https://picsum.photos/200'
+            title='produto x'
+            subtitle='price'
+          />
           </Grid>
         </Grid>
       </Container>

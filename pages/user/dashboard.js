@@ -3,15 +3,11 @@ import {
   Typography,
   Container,
   Grid,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  CardActions
 } from '@mui/material';
 
 import theme from '../../src/theme';
 import TemplateDefault from '../../src/templates/Default'
+import Card from '../../src/components/Card';
 
 export default function Home() {
   return (
@@ -35,91 +31,55 @@ export default function Home() {
     <Container maxWidth='md'>
       <Grid container spacing={3} columns={{xs:4 ,sm:12 ,md:12}}>
         <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ maxWidth: 345 , margin:'0 auto'}} >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="150"
-                image='https://picsum.photos/200'
-                alt="alt"
-                title='Título'
-              />
-            </CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Produto 1
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                R$ 120,00
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary">
-                Editar
-              </Button>
-              <Button size="small" color="primary">
-                Remover
-              </Button>
-            </CardActions>
-          </Card>        
+          <Card 
+            image='https://picsum.photos/720'
+            title='produto x'
+            subtitle='price'
+            action={
+              <>
+                <Button size="small" color="primary">
+                  Editar
+                </Button>
+                <Button size="small" color="primary">
+                  Remover
+                </Button>
+              </>
+            }
+          />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ maxWidth: 345 , margin:'0 auto'}} >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="150"
-                image='https://picsum.photos/200'
-                alt="alt"
-                title='Título'
-              />
-            </CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Produto 2
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                R$ 100,00
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary">
-                Editar
-              </Button>
-              <Button size="small" color="primary">
-                Remover
-              </Button>
-            </CardActions>
-          </Card>        
+          <Card 
+            image='https://picsum.photos/720'
+            title='produto x'
+            subtitle='price'
+            action={
+              <>
+                <Button size="small" color="primary">
+                  Editar
+                </Button>
+                <Button size="small" color="primary">
+                  Remover
+                </Button>
+              </>
+            }
+          />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <Card sx={{ maxWidth: 345 , margin:'0 auto'}} >
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="150"
-                image='https://picsum.photos/200'
-                alt="alt"
-                title='Título'
-              />
-            </CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Produto 3
-              </Typography>
-              <Typography variant="body2" color="text.primary">
-                R$ 50,00
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" color="primary">
-                Editar
-              </Button>
-              <Button size="small" color="primary">
-                Remover
-              </Button>
-            </CardActions>
-          </Card>        
+          <Card 
+            image='https://picsum.photos/720'
+            title='produto x'
+            subtitle='price'
+            action={
+              <>
+                <Button size="small" color="primary">
+                  Editar
+                </Button>
+                <Button size="small" color="primary">
+                  Remover
+                </Button>
+              </>
+            }
+          />
         </Grid>
       </Grid>
     </Container>
