@@ -12,8 +12,8 @@ import {
 
 import Carousel from "react-material-ui-carousel"
 
-import TemplateDefault from "../src/templates/Default"
-import theme from "../src/theme"
+import TemplateDefault from "../../src/templates/Default"
+import theme from "../../src/theme"
 
 const Product = () => {
 

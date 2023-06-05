@@ -51,21 +51,21 @@ const Home = () => {
         <Grid container spacing={3} columns={{xs:4 ,sm:12 ,md:12}}>
           <Grid item xs={12} sm={6} md={4}>
           <Card 
-            image='https://picsum.photos/200'
+            image='https://picsum.photos/720?a=1'
             title='produto x'
             subtitle='price'
           />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
           <Card 
-            image='https://picsum.photos/200'
+            image='https://picsum.photos/720?a=2'
             title='produto x'
             subtitle='price'
           />
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
           <Card 
-            image='https://picsum.photos/200'
+            image='https://picsum.photos/720?a=3'
             title='produto x'
             subtitle='price'
           />
