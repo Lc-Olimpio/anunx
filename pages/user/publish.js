@@ -13,9 +13,11 @@ import {
   OutlinedInput,
   TextField,
   Typography,
-  FormHelperText
+  FormHelperText,
+  Select,
+  Input,
 } from '@mui/material'
-import { DeleteForever } from '@mui/icons-material'
+import { DeleteForever, SelectAll } from '@mui/icons-material'
 import { useDropzone } from 'react-dropzone'
 import styled from '@emotion/styled'
 
@@ -56,6 +58,10 @@ const Publish = () => {
 
     category: yup.string()
     .required('Campo obrigatório'),
+
+    description: yup.string()
+      .min(50, `Escreva uma descrição com pelo menos 50 caracteres.`)
+      .required('Campo obrigatório'),
   })
 
   const ContainerStyle = ({  
@@ -112,6 +118,7 @@ const Publish = () => {
       initialValues={{
         title: '',
         category:'',
+        description:'',
       }}
       validationSchema={validationSchema}
       onSubmit={(values)=> {
@@ -151,6 +158,7 @@ const Publish = () => {
 
                 <Container maxWidth='md'>
                   <Box sx={boxStyle}>
+
                     <Typography 
                       variant='h6' 
                       component='h6'
@@ -158,17 +166,18 @@ const Publish = () => {
                       >
                       Título do anúncio
                     </Typography>
-                    <TextField
-                      variant='standard'
-                      label='ex: Bicicleta aro 18 com garantia'
-                      size='small'
-                      fullWidth
-                      name='title'
-                      value={values.title}
-                      onChange={handleChange}
-                      error={errors.title? true:false}
-                      helperText={errors.title}
-                    />
+                    <FormControl fullWidth variant='standard' error={errors.title? true:false}>
+                      <InputLabel>ex.: Bicicleta aro 18 com garantia</InputLabel>
+                      <Input
+                        name='title'
+                        value={values.title}
+                        onChange={handleChange}
+                      />
+                      <FormHelperText sx={{marginLeft:'0'}} >
+                        {errors.title}
+                      </FormHelperText>
+                    </FormControl>
+
                     <Typography 
                       variant='h6' 
                       component='h6'
@@ -177,13 +186,11 @@ const Publish = () => {
                       >
                       Categoria
                     </Typography>
-                      <FormControl fullWidth error={errors.category? true:false}>
-                        <TextField
-                          select
+                      <FormControl fullWidth variant='standard' error={errors.category? true:false}>
+                        <InputLabel sx={{padding:'0'}}>Selecione</InputLabel>
+                        <Select
                           label="Selecione"
-                          variant='standard'
                           fullWidth
-                          error={errors.category? true:false}
                           name='category'
                           value={values.category}
                           onChange={handleChange}
@@ -204,11 +211,12 @@ const Publish = () => {
                           <MenuItem value='Tecnologia'> Tecnologia </MenuItem>
                           <MenuItem value='Emprego'> Emprego </MenuItem>
                           <MenuItem value='Outros'> Outros </MenuItem>
-                        </TextField>
+                        </Select>
                         <FormHelperText sx={{marginLeft:'0'}} >
                           {errors.category}
                         </FormHelperText>
                       </FormControl>  
+
                   </Box>
                 </Container>
 
@@ -276,26 +284,26 @@ const Publish = () => {
 
                 <Container maxWidth='md' sx={ContainerStyle}>
                   <Box sx={boxStyle}>
-                    <Typography 
-                        variant='h6' 
-                        component='h6'
-                        color='textPrimary'
+
+                  <Typography 
+                      variant='h6' 
+                      component='h6'
+                      color='textPrimary'
                       >
-                        Descrição
-                      </Typography>
-                      <Typography 
-                        component='div'
-                        variant='body2' 
-                        color='textPrimary'
-                      >
-                        Escreva os detalhes do que esta vendendo
-                      </Typography>
-                      <TextField 
-                        multiline
-                        rows={6}
-                        variant='outlined'
-                        fullWidth
-                      />
+                      Descrição do anúncio
+                    </Typography>
+                      <FormControl fullWidth variant='standard' error={errors.description? true:false}>
+                        <InputLabel>Escreva os detalhes do que esta vendendo</InputLabel>
+                        <Input
+                          name='description' 
+                          multiline
+                          value={values.description}
+                          onChange={handleChange}
+                        />
+                        <FormHelperText sx={{marginLeft:'0'}} >
+                          {errors.description}
+                        </FormHelperText>
+                      </FormControl>
                   </Box>
                 </Container>
 
