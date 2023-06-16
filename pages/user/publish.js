@@ -11,7 +11,6 @@ import {
   InputLabel,
   MenuItem,
   OutlinedInput,
-  TextField,
   Typography,
   FormHelperText,
   Select,
@@ -22,14 +21,11 @@ import styled from '@emotion/styled'
 
 import theme from '../../src/theme'
 import TemplateDefault from '../../src/templates/Default'
-import { useState } from 'react'
-
+import { DeleteForever } from '@mui/icons-material'
 
 
 const Publish = () => {
   
-  const [files, setFiles] = useState([])
-
   const validationSchema = yup.object({
     title: yup.string().min(6, `Título muito pequeno`).max(100, `Título muito grande.`).required('Campo obrigatório'),
     category: yup.string().required('Campo obrigatório'),
@@ -38,27 +34,8 @@ const Publish = () => {
     email: yup.string().email('Digite um email válido').required('Campo obrigatório'),
     name: yup.string().required('Campo obrigatório'),
     phone: yup.string().required('Campo obrigatório'),
+    files: yup.array().min(1,'Envie pelo menos uma imagem').required('Campo obrigatório')
   })
-
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
-    onDrop: (acceptedFile) => {
-      const newFiles = acceptedFile.map(file => {
-        return Object.assign(file, {
-          preview: URL.createObjectURL(file)
-        })
-      })
-      setFiles([
-        ...files,
-        ...newFiles,
-      ])
-    }
-  })
-
-  const handleRemoveFile = fileName => {
-    const newFileState = files.filter(file => file.name !== fileName)
-    setFiles(newFileState)
-  }
 
   const ContainerStyle = ({  
     marginTop: theme.spacing(3),
@@ -78,6 +55,18 @@ const Publish = () => {
     height: 150,    
     backgroundColor:theme.palette.background.default,
     border: '2px dashed black',
+    margin: '0 0.6em 0.2em 0',
+    padding: '0.5em'
+  })
+
+  const dropZoneError = ({
+    display:'flex',
+    alignItems:'center',
+    justifyContent:'center',
+    width: 175 , 
+    height: 150,    
+    backgroundColor:theme.palette.background.default,
+    border: '2px dashed red',
     margin: '0 0.6em 0.2em 0',
     padding: '0.5em'
   })
@@ -119,6 +108,7 @@ const Publish = () => {
         name:'',
         email:'',
         phone:'',
+        files:[],
       }}
       validationSchema={validationSchema}
       onSubmit={(values)=> {
@@ -129,10 +119,32 @@ const Publish = () => {
           ({
             values,
             errors,
+            touched,
             handleChange,
             handleSubmit,
+            setFieldValue,
           }) => {
-            console.log(errors)
+
+            const { getRootProps, getInputProps } = useDropzone({
+              accept: 'image/*',
+              onDrop: (acceptedFile) => {
+                const newFiles = acceptedFile.map(file => {
+                  return Object.assign(file, {
+                    preview: URL.createObjectURL(file)
+                  })
+                })
+                setFieldValue ('files',[
+                  ...values.files,
+                  ...newFiles,
+                ])
+              }
+            })
+          
+            const handleRemoveFile = fileName => {
+              const newFileState = values.files.filter(file => file.name !== fileName)
+              setFieldValue('files',newFileState)
+            }
+
             return (
               <form onSubmit={handleSubmit}>
                 <Container maxWidth='sm'> 
@@ -166,7 +178,7 @@ const Publish = () => {
                       >
                       Título do anúncio
                     </Typography>
-                    <FormControl fullWidth variant='standard' error={errors.title? true:false}>
+                    <FormControl fullWidth variant='standard' error={errors.title && touched.title? true:false}>
                       <InputLabel>ex.: Bicicleta aro 18 com garantia</InputLabel>
                       <Input
                         name='title'
@@ -174,7 +186,7 @@ const Publish = () => {
                         onChange={handleChange}
                       />
                       <FormHelperText sx={{marginLeft:'0'}} >
-                        {errors.title}
+                        {errors.title && touched.title? errors.title:null}
                       </FormHelperText>
                     </FormControl>
 
@@ -186,7 +198,7 @@ const Publish = () => {
                       >
                       Categoria
                     </Typography>
-                      <FormControl fullWidth variant='standard' error={errors.category? true:false}>
+                      <FormControl fullWidth variant='standard' error={errors.category && touched.category? true:false}>
                         <InputLabel sx={{padding:'0'}}>Selecione</InputLabel>
                         <Select
                           label="Selecione"
@@ -213,7 +225,7 @@ const Publish = () => {
                           <MenuItem value='Outros'> Outros </MenuItem>
                         </Select>
                         <FormHelperText sx={{marginLeft:'0'}} >
-                          {errors.category}
+                          {errors.category && touched.category? errors.category:null}
                         </FormHelperText>
                       </FormControl>  
 
@@ -237,47 +249,50 @@ const Publish = () => {
                       >
                       A primeira imagem é a foto principal do anúncio
                     </Typography>
-
+                    {
+                      errors.files && touched.files
+                      ? <Typography variant='body2' color='error'>{errors.files}</Typography>
+                      : null 
+                    }
                     <Box sx={{
                       display:'flex',  
                       marginTop:'1em', 
                       flexWrap:'wrap', 
                       }}>
                 
-                      <Box sx={dropZone} {...getRootProps()}>
-                        <input {...getInputProps()} />
+                      <Box sx={errors.files && touched.files? dropZoneError:dropZone}  {...getRootProps()}>
+                        <input name='files' {...getInputProps()} />
 
                         <Typography
                         component='span'
                         variant='body2'
-                        color='textPrimary'
+                        color={errors.files && touched.files? 'error':'textPrimary'}
                         textAlign='center'
                         >
-                          Clique para adicionar ou arraste a imagem para aqui.
+                          Clique para adicionar ou arraste a imagem aqui.
                         </Typography>
                       </Box>
 
                       {
-                        files.map((file, index) => (
-                        <ImgBox key={file.name} sx={{ backgroundImage: `url(${file.preview})` }}>
-                          {
-                            index === 0 ?
-                              <Box sx={{position:'absolute', bottom:'0', padding:'6px 10px', background:'blue'}}>
-                                <Typography variant='body2' color='secondary'>
-                                  Principal
-                                </Typography>
-                              </Box>
-                            : null
-                          }
-                          <Box sx={mask} className='mask'> 
-                            <IconButton  onClick={() => handleRemoveFile(file.name)} color='secondary' >
-                            <DeleteForever fontSize='large' />
-                            </IconButton>
-                          </Box>
-                        </ImgBox>
-                      ))
-                    }            
-                      
+                        values.files.map((file, index) => (
+                          <ImgBox key={file.name} sx={{ backgroundImage: `url(${file.preview})` }}>
+                            {
+                              index === 0 ?
+                                <Box sx={{position:'absolute', bottom:'0', padding:'6px 10px', background:'blue'}}>
+                                  <Typography variant='body2' color='secondary'>
+                                    Principal
+                                  </Typography>
+                                </Box>
+                              : null
+                            }
+                            <Box sx={mask} className='mask'> 
+                              <IconButton  onClick={() => handleRemoveFile(file.name)} color='secondary' >
+                              <DeleteForever fontSize='large' />
+                              </IconButton>
+                            </Box>
+                          </ImgBox>
+                        ))
+                      }            
                     </Box>
                   </Box>
                 </Container>
@@ -293,7 +308,7 @@ const Publish = () => {
                       >
                       Descrição
                     </Typography>
-                      <FormControl fullWidth variant='outlined' error={errors.description? true:false}>
+                      <FormControl fullWidth variant='outlined' error={errors.description && touched.description? true:false}>
                         <InputLabel>Escreva os detalhes do que esta vendendo</InputLabel>
                         <OutlinedInput
                           name='description' 
@@ -304,7 +319,7 @@ const Publish = () => {
                           label='Escreva os detalhes do que esta vendendo'
                         />
                         <FormHelperText sx={{marginLeft:'0'}} >
-                          {errors.description}
+                          {errors.description && touched.description? errors.description:null}
                         </FormHelperText>
                       </FormControl>
                   </Box>
@@ -320,7 +335,7 @@ const Publish = () => {
                     >
                       Preço
                     </Typography>
-                    <FormControl fullWidth error={errors.price? true:false} >
+                    <FormControl fullWidth error={errors.price && touched.price? true:false} >
                       <OutlinedInput 
                       name='price'
                       value={values.price}
@@ -328,7 +343,7 @@ const Publish = () => {
                       startAdornment= {<InputAdornment position='start'>$</InputAdornment>}
                       />
                       <FormHelperText sx={{marginLeft:'0'}} >
-                          {errors.price}
+                          {errors.price && touched.price? errors.price:null}
                         </FormHelperText>
                     </FormControl>
                   </Box>
@@ -343,7 +358,7 @@ const Publish = () => {
                       >
                         Dados de contato
                     </Typography>
-                    <FormControl fullWidth variant='standard' error={errors.name? true:false}>
+                    <FormControl fullWidth variant='standard' error={errors.name && touched.name? true:false}>
                       <InputLabel>Nome</InputLabel>
                       <Input 
                         name='name'
@@ -353,11 +368,11 @@ const Publish = () => {
                         fullWidth
                       />
                       <FormHelperText>
-                        {errors.name}
+                        {errors.name && touched.name? errors.name:null}
                       </FormHelperText>          
                     </FormControl>
 
-                    <FormControl fullWidth variant='standard' error={errors.email? true:false}>
+                    <FormControl fullWidth variant='standard' error={errors.email && touched.email? true:false}>
                       <InputLabel>E-mail</InputLabel>
                       <Input
                         name='email'
@@ -367,11 +382,11 @@ const Publish = () => {
                         fullWidth
                       />
                       <FormHelperText>
-                        {errors.email}
+                        {errors.email && touched.email? errors.email:null}
                       </FormHelperText>          
                     </FormControl>
 
-                    <FormControl fullWidth variant='standard' error={errors.phone? true:false}>
+                    <FormControl fullWidth variant='standard' error={errors.phone && touched.phone? true:false}>
                       <InputLabel>Telefone</InputLabel>
                       <Input
                         name='phone'
@@ -381,7 +396,7 @@ const Publish = () => {
                         fullWidth
                       />
                       <FormHelperText>
-                        {errors.phone}
+                        {errors.phone && touched.phone? errors.phone:null}
                       </FormHelperText>          
                     </FormControl>      
                   
