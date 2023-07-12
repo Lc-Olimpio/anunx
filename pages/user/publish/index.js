@@ -20,11 +20,9 @@ import {
   boxStyle,
 } from './styles'
 
-import * as formValues from './formValues'
 import theme from '../../../src/theme'
 import TemplateDefault from '../../../src/templates/Default'
 import FileUpload from '../../../src/components/fileUpload/Index'
-
 
 const Publish = () => {
 
@@ -46,8 +44,6 @@ const Publish = () => {
             handleSubmit,
             setFieldValue,
           }) => {
-
-            
 
             return (
               <form onSubmit={handleSubmit}>
@@ -267,7 +263,6 @@ const Publish = () => {
           }
         }
       </Formik>
-      
     </TemplateDefault>
   )
 }
